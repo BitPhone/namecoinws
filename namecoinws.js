@@ -1,15 +1,19 @@
 var spawn = require('child_process').spawn;
 var WebSocketServer = require('ws').Server, wss = new WebSocketServer({port: 1313});
-var namecoind_path = '/home/jason/Namecoin/namecoind';
+
+// todo: use a more generic path for namecoind
+var namecoind_path = '/Users/jasongullickson/namecoin_osx32';
 
 wss.on('connection', function(ws){
 	ws.on('message', function(message) {
+
 		console.log('received: %s', message);
 
 			// split the message on spaces
 			var message_parts = message.split(' ');
+			console.log(typeof message_parts);
 
-			// todo: use a more generic path for namecoind
+			//var namecoind = spawn(namecoind_path, message_parts);
 			var namecoind = spawn(namecoind_path, message_parts);
 
 			namecoind.stdout.on('data', function(data){
@@ -23,7 +27,7 @@ wss.on('connection', function(ws){
 			});
 
 			namecoind.on('close', function(code){
-				console.log('namecoind existed with code '+ code);
+				console.log('namecoind exited with code '+ code);
 			});	
 	});
 });

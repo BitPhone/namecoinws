@@ -16,7 +16,7 @@ wss.on('connection', function(ws){
 
 			namecoind.stdout.on('data', function(data){
 				console.log('namecoind.stdout.on: ' + data);
-				ws.send(data.toString());
+				ws.send('{"' + message_parts[0] + '":' + data.toString() + '}');
 			});
 
 			namecoind.stderr.on('data', function(data){

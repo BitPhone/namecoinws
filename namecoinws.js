@@ -11,13 +11,13 @@ wss.on('connection', function(ws){
 
 			// split the message on spaces
 			var message_parts = message.split(' ');
-			console.log(typeof message_parts);
+			//console.log(typeof message_parts);
 
 			var namecoind = spawn(namecoind_path, message_parts);
 
 			namecoind.stdout.on('data', function(data){
 				console.log('namecoind.stdout.on: ' + data);
-				ws.send(data);
+				ws.send(data.toString());
 			});
 
 			namecoind.stderr.on('data', function(data){

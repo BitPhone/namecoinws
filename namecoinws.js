@@ -8,6 +8,7 @@ wss.on('connection', function(ws){
 			// split the message on spaces
 			var message_parts = message.split(' ');
 
+			// todo: use a more generic path for namecoind
 			var namecoind = spawn('/home/jason/Namecoin/namecoind', message_parts);
 
 			namecoind.stdout.on('data', function(data){

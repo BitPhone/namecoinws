@@ -10,3 +10,7 @@ Requires 'ws' which can be found here:
 ...and installed via:
 
      npm install ws
+
+...then run as such:
+
+     node namecoinws.js

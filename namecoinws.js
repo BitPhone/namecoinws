@@ -1,5 +1,6 @@
 var spawn = require('child_process').spawn;
 var WebSocketServer = require('ws').Server, wss = new WebSocketServer({port: 1313});
+var namecoind_path = '/home/jason/Namecoin/namecoind';
 
 wss.on('connection', function(ws){
 	ws.on('message', function(message) {
@@ -9,7 +10,7 @@ wss.on('connection', function(ws){
 			var message_parts = message.split(' ');
 
 			// todo: use a more generic path for namecoind
-			var namecoind = spawn('/home/jason/Namecoin/namecoind', message_parts);
+			var namecoind = spawn(namecoind_path, message_parts);
 
 			namecoind.stdout.on('data', function(data){
 				console.log('namecoind.stdout.on: ' + data);

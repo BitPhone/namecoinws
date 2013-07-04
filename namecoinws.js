@@ -13,7 +13,6 @@ wss.on('connection', function(ws){
 			var message_parts = message.split(' ');
 			console.log(typeof message_parts);
 
-			//var namecoind = spawn(namecoind_path, message_parts);
 			var namecoind = spawn(namecoind_path, message_parts);
 
 			namecoind.stdout.on('data', function(data){

@@ -5,7 +5,10 @@ wss.on('connection', function(ws){
 	ws.on('message', function(message) {
 		console.log('received: %s', message);
 
-			var namecoind = spawn('/home/jason/Namecoin/namecoind', ['name_show','d/gullicksonlaboratories']);
+			// split the message on spaces
+			var message_parts = message.split(' ');
+
+			var namecoind = spawn('/home/jason/Namecoin/namecoind', message_parts);
 
 			namecoind.stdout.on('data', function(data){
 				console.log('namecoind.stdout.on: ' + data);
